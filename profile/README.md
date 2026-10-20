@@ -2,16 +2,21 @@
 
 **Memory and coordination infrastructure for AI agents.**
 
-We build open-source building blocks that give multi-agent systems durable
-memory and reliable coordination, without forcing every application team to
-reinvent distributed systems.
+We build infrastructure for AI agents: durable memory and reliable
+coordination, without forcing every application team to reinvent distributed
+systems.
 
-Our projects share the same bias: keep the data plane simple, make failure
-semantics explicit, and document the sharp edges instead of hiding them.
+We open-source the layers where adoption and community compound, and keep the
+deepest coordination core focused for design partners.
 
 ---
 
 ## Projects
+
+| Project | What it provides | Status |
+|---|---|---|
+| **Mneme** | Long-term memory: user profiles, session summaries, governance | Open source |
+| **Chorus** | Distributed state and coordination for multi-agent runtimes | Private beta |
 
 ### [Mneme](https://github.com/mnemosyne-ai-systems/mneme) — long-term memory for AI agents
 
@@ -35,31 +40,34 @@ LLM cost.
 
 **Stack:** Go, Pulsar, Redis, ClickHouse, Kubernetes
 
+**License:** Apache 2.0
+
 [README](https://github.com/mnemosyne-ai-systems/mneme#readme) ·
 [Architecture](https://github.com/mnemosyne-ai-systems/mneme/blob/main/ARCHITECTURE.md) ·
 [API](https://github.com/mnemosyne-ai-systems/mneme/blob/main/README.md#api)
 
 ---
 
-### [Chorus](https://github.com/mnemosyne-ai-systems/chorus) — distributed agent state on TiKV
+### Chorus — distributed state and coordination for multi-agent systems
 
-Chorus is a single source of truth for multi-agent frameworks: state storage
-plus distributed coordination — sessions, leases, claims, and cascades — on a
-sharded TiKV transactional store. No Redis, etcd, ZooKeeper, or message queue in
-the critical path.
+Chorus gives multi-agent runtimes a single source of truth for session state and
+coordination. **TiKV provides the durable, transactional storage layer and PD
+provides time and region metadata; Chorus adds the coordination semantics on top
+of it** — sessions, leases, claims, cascades, shard ownership, and live
+rebalancing. No Redis, etcd, ZooKeeper, or message queue in the critical path.
 
-- **TiKV (TxnKV) as the only source of truth**, with PD providing TSO and regions
-- **Application-layer sharding** — nodes own shards; clients cache routes and follow redirects
-- **Three tiers of concurrency control** — CAS, claim, and lease self-check with demotion, always with a safety margin against TSO skew
-- **In-place rebalance** — drain-then-cut split/merge and live shard transfer
-- **Explicit failure semantics** — fail-closed on missing TSO, bounded redirect chasing, ABA-free demotion
+- Durable session state across long-running and multi-process agents
+- Leases and claims that fence stale workers after failover
+- Live shard movement and rebalance without stopping the data plane
+- Fail-closed behavior when the clock source is unavailable
+- gRPC API and Go SDK for agent frameworks
 
 **Stack:** Go, TiKV, PD, gRPC, protobuf
 
-[README](https://github.com/mnemosyne-ai-systems/chorus#readme) ·
-[Design](https://github.com/mnemosyne-ai-systems/chorus/blob/main/DESIGN.md) ·
-[Benchmarks](https://github.com/mnemosyne-ai-systems/chorus/blob/main/BENCHMARKS.md) ·
-[Operations](https://github.com/mnemosyne-ai-systems/chorus/blob/main/deploy/OPERATIONS.md)
+**Status:** Private beta. The core is proprietary; evaluation access, benchmark
+results, and architecture details are shared with design partners.
+
+[Request design-partner access](https://github.com/mnemosyne-ai-systems/.github/issues)
 
 ---
 
@@ -70,22 +78,26 @@ the critical path.
   application where it can be tested.
 - **Failure semantics are part of the API.** Fail closed, bound retries, state
   the safety margins, and make recovery a documented procedure.
-- **Honest limitations.** Known gaps and investigated incidents are written
-  down next to the design, not discovered by users in production.
+- **Honest limitations.** We write down known gaps and failure modes before
+  users hit them.
 - **Cheap defaults.** Features that incur external cost, such as LLM calls, are
   opt-in.
 
 ## Status
 
-Both projects are pre-1.0 and under active development. APIs may change; each
-repository documents its own compatibility and operational guarantees.
+Mneme is open source and pre-1.0; its APIs may change. Chorus is in private beta
+and its core remains proprietary while integration surfaces are shared with
+partners.
 
 ## Contributing and security
 
-Contributions, bug reports, and design discussions are welcome in the
-individual repositories. Please use the issue templates and read the
-contributing and security guidance in each project before opening a PR.
+Mneme welcomes contributions, bug reports, and design discussions — see its
+[CONTRIBUTING.md](https://github.com/mnemosyne-ai-systems/mneme/blob/main/CONTRIBUTING.md)
+and [SECURITY.md](https://github.com/mnemosyne-ai-systems/mneme/blob/main/SECURITY.md).
+For Chorus, use the access link above. Please report security issues privately
+rather than in public issues.
 
 ## License
 
-All projects are released under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+Mneme is released under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+Chorus is proprietary software; commercial and evaluation licenses are available.
