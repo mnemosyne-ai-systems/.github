@@ -6,8 +6,8 @@ We build infrastructure for AI agents: durable memory and reliable
 coordination, without forcing every application team to reinvent distributed
 systems.
 
-We open-source the layers where adoption and community compound, and publish
-the coordination core for evaluation while keeping it proprietary.
+We open-source the layers where adoption and community compound, and keep the
+coordination core proprietary while publishing its SDK and protocol definitions.
 
 ---
 
@@ -16,7 +16,7 @@ the coordination core for evaluation while keeping it proprietary.
 | Project | What it provides | Status |
 |---|---|---|
 | **Mneme** | Long-term memory: user profiles, session summaries, governance | Open source |
-| **Chorus** | Distributed state and coordination for multi-agent runtimes | Public beta |
+| **Chorus** | Distributed state and coordination for multi-agent runtimes | SDK public beta · core private |
 
 ### [Mneme](https://github.com/mnemosyne-ai-systems/mneme) — long-term memory for AI agents
 
@@ -64,11 +64,12 @@ rebalancing. No Redis, etcd, ZooKeeper, or message queue in the critical path.
 
 **Stack:** Go, TiKV, PD, gRPC, protobuf
 
-**Status:** Public beta. The core is proprietary; the repository is published
-for evaluation and feedback, and production use requires a commercial license.
+**Status:** The Go SDK and protobuf definitions are in public beta under
+Apache 2.0. The Chorus core is proprietary and private. Evaluation access is
+available on request; production use requires a commercial license.
 
-[Repository](https://github.com/mnemosyne-ai-systems/chorus) ·
-[README](https://github.com/mnemosyne-ai-systems/chorus#readme)
+[Go SDK](https://github.com/mnemosyne-ai-systems/chorus-sdk-go) ·
+[SDK README](https://github.com/mnemosyne-ai-systems/chorus-sdk-go#readme)
 
 ---
 
@@ -89,21 +90,21 @@ for evaluation and feedback, and production use requires a commercial license.
 
 ## Status
 
-Mneme is open source and pre-1.0; its APIs may change. Chorus is in public
-beta; its core remains proprietary, and the repository is published for
-evaluation and feedback.
+Mneme is open source and pre-1.0; its APIs may change. The Chorus Go SDK is in
+public beta under Apache 2.0; the Chorus core is proprietary and private.
 
 ## Contributing and security
 
 Mneme welcomes contributions, bug reports, and design discussions — see its
 [CONTRIBUTING.md](https://github.com/mnemosyne-ai-systems/mneme/blob/main/CONTRIBUTING.md)
 and [SECURITY.md](https://github.com/mnemosyne-ai-systems/mneme/blob/main/SECURITY.md).
-For Chorus, open an issue in its
-[repository](https://github.com/mnemosyne-ai-systems/chorus/issues). Please
-report security issues privately rather than in public issues.
+For the Chorus SDK, open an issue in its
+[repository](https://github.com/mnemosyne-ai-systems/chorus-sdk-go/issues).
+For core evaluation, contact the maintainers. Please report SDK or core
+security issues privately rather than in public issues.
 
 ## License
 
-Mneme is released under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
-Chorus is proprietary software published for evaluation; commercial licenses
-are available.
+Mneme and the Chorus Go SDK are released under the
+[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0). The Chorus
+core is proprietary software; commercial licenses are available.
