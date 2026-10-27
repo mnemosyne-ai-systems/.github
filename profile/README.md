@@ -69,7 +69,8 @@ Apache 2.0. The Chorus core is proprietary and private. Evaluation access is
 available on request; production use requires a commercial license.
 
 [Go SDK](https://github.com/mnemosyne-ai-systems/chorus-sdk-go) ·
-[SDK README](https://github.com/mnemosyne-ai-systems/chorus-sdk-go#readme)
+[SDK README](https://github.com/mnemosyne-ai-systems/chorus-sdk-go#readme) ·
+[Request evaluation](https://github.com/mnemosyne-ai-systems/chorus-sdk-go/issues/new)
 
 ---
 
@@ -100,8 +101,9 @@ Mneme welcomes contributions, bug reports, and design discussions — see its
 and [SECURITY.md](https://github.com/mnemosyne-ai-systems/mneme/blob/main/SECURITY.md).
 For the Chorus SDK, open an issue in its
 [repository](https://github.com/mnemosyne-ai-systems/chorus-sdk-go/issues).
-For core evaluation, contact the maintainers. Please report SDK or core
-security issues privately rather than in public issues.
+For core evaluation, open an
+[evaluation request](https://github.com/mnemosyne-ai-systems/chorus-sdk-go/issues/new).
+Please report SDK or core security issues privately rather than in public issues.
 
 ## License
 
